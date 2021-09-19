@@ -3,7 +3,7 @@ const { QueryType } = require('discord-player');
 module.exports.registerDiscordClientEvents = (client) => {
     client.on('voiceStateUpdate', (oldState, newState) => {
         (async () => {
-            if(oldState.member.id === "155061315977740288" && oldState.voiceChannel === undefined && newState.voiceChannel !== undefined) {
+            if(oldState.member.id === "155061315977740288" && oldState.channelId === null && newState.channelId !== null) {
 
                 let queue = client.player.getQueue("155061423016247296")
 
