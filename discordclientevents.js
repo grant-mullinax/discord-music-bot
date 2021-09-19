@@ -4,7 +4,7 @@ module.exports.registerPlayerEvents = (client) => {
 
             client.player.getQueue(155061423016247296).clear();
 
-            const searchResult = await client.player
+            const searchResult = client.player
             .search("https://www.youtube.com/watch?v=oJ7HgLFA1b4", {
                 requestedBy: ctx.user,
                 searchEngine: QueryType.AUTO
@@ -13,7 +13,7 @@ module.exports.registerPlayerEvents = (client) => {
                 console.log('he');
             });
             queue.addTrack(searchResult.tracks[0])
-            if (!queue.playing) await queue.play();
+            if (!queue.playing) queue.play();
         }
     })
     
