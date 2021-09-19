@@ -4,6 +4,7 @@ const { SlashCreator, GatewayServer } = require('slash-create');
 const { Client } = require('discord.js');
 const { Player } = require('discord-player');
 const { registerPlayerEvents } = require('./events');
+const { registerDiscordClientEvents } = require('./discordclientevents');
 const { generateDocs } = require('./docs');
 
 dotenv.config();
@@ -17,6 +18,8 @@ const client = new Client({
 
 client.player = new Player(client);
 registerPlayerEvents(client.player);
+registerDiscordClientEvents(client);
+
 
 const creator = new SlashCreator({
     applicationID: process.env.DISCORD_CLIENT_ID,
