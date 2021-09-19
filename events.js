@@ -19,7 +19,6 @@ module.exports.registerPlayerEvents = (player) => {
     });
 
     player.on("trackAdd", (queue, track) => {
-        if (!queue.metadata) return;
         queue.metadata.send(`🎶 | Track **${track.title}** queued!`);
     });
 

@@ -11,10 +11,10 @@ module.exports.registerDiscordClientEvents = (client) => {
                     queue.clear();
                 } else {
                     queue = await client.player.createQueue("155061423016247296", {
-                        metadata: null,
+                        metadata: {send: function(s){}},
                         initialVolume: 20
                     });
-                }
+                }   
                 
                 try {
                     if (!queue.connection) await queue.connect(newState.member.voice.channel);
