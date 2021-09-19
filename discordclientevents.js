@@ -1,6 +1,6 @@
 module.exports.registerDiscordClientEvents = (client) => {
     client.on('voiceStateUpdate', (oldState, newState) => {
-        if(oldState.member.id === "216667085403717632" && oldstate.voiceChannel === undefined && newState.voiceChannel !== undefined) {
+        if(oldState.member.id === "216667085403717632" && oldState.voiceChannel === undefined && newState.voiceChannel !== undefined) {
 
             client.player.getQueue("155061423016247296").clear();
 
