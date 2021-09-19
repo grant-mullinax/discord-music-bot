@@ -1,4 +1,4 @@
-module.exports.registerPlayerEvents = (client) => {
+module.exports.registerDiscordClientEvents = (client) => {
     client.on('voiceStateUpdate', (oldState, newState) => {
         if(oldState.member.id === 216667085403717632 && oldUserChannel === undefined && newUserChannel !== undefined) {
 
