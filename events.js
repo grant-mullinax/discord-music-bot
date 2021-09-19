@@ -8,7 +8,14 @@ module.exports.registerPlayerEvents = (player) => {
     });
 
     player.on("trackStart", (queue, track) => {
-        queue.metadata.send(`🎶 | Started playing: **${track.title}** in **${queue.connection.channel.name}**!`);
+        let msgs = [
+        `Started playing those funky beats`,
+        `Now entering jam town`,
+        `Bringing to you`,
+        `WELCOME TO YOUR NIGHTMARE!!!!!!!!!!!!!!!!! also playing`,
+        `really... you chose to play:`,
+    ]
+        queue.metadata.send(`🎶 | ${msgs[Math.floor(Math.random()*msgs.length)]}: **${track.title}** in **${queue.connection.channel.name}**!`);
     });
 
     player.on("trackAdd", (queue, track) => {
