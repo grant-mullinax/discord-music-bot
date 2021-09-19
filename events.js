@@ -13,12 +13,13 @@ module.exports.registerPlayerEvents = (player) => {
         `Now entering jam town`,
         `Bringing to you`,
         `WELCOME TO YOUR NIGHTMARE!!!!!!!!!!!!!!!!! also playing`,
-        `really... you chose to play:`,
+        `really... you chose to play`,
     ]
         queue.metadata.send(`🎶 | ${msgs[Math.floor(Math.random()*msgs.length)]}: **${track.title}** in **${queue.connection.channel.name}**!`);
     });
 
     player.on("trackAdd", (queue, track) => {
+        if (!queue.metadata) return;
         queue.metadata.send(`🎶 | Track **${track.title}** queued!`);
     });
 

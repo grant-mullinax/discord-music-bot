@@ -1,20 +1,36 @@
+const { QueryType } = require('discord-player');
+
 module.exports.registerDiscordClientEvents = (client) => {
     client.on('voiceStateUpdate', (oldState, newState) => {
-        if(oldState.member.id === "216667085403717632" && oldState.voiceChannel === undefined && newState.voiceChannel !== undefined) {
+        (async () => {
+            if(oldState.member.id === "155061315977740288" && oldState.voiceChannel === undefined) {
 
-            client.player.getQueue("155061423016247296").clear();
+                let queue = client.player.getQueue("155061423016247296")
 
-            const searchResult = client.player
-            .search("https://www.youtube.com/watch?v=oJ7HgLFA1b4", {
-                requestedBy: ctx.user,
-                searchEngine: QueryType.AUTO
-            })
-            .catch(() => {
-                console.log('he');
-            });
-            queue.addTrack(searchResult.tracks[0])
-            if (!queue.playing) queue.play();
-        }
+                if (queue) {
+                    queue.clear();
+                } else {
+                    queue = await client.player.createQueue("155061423016247296", {
+                        metadata: null,
+                        initialVolume: 20
+                    });
+                }
+                
+                try {
+                    if (!queue.connection) await queue.connect(newState.member.voice.channel);
+                } catch {}
+
+                const searchResult = await client.player
+                .search("https://www.youtube.com/watch?v=oJ7HgLFA1b4", {
+                    searchEngine: QueryType.AUTO
+                })
+                .catch(() => {
+                    console.log('he');
+                });
+                queue.addTrack(searchResult.tracks[0])
+                if (!queue.playing) await queue.play();
+            }
+        })();
     })
     
 };
